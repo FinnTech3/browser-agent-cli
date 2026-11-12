@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Create your account</title>
+  <style>
+    body { font: 16px/1.4 sans-serif; margin: 2rem; }
+    label { display: block; margin: .5rem 0 .2rem; }
+    button, input, select { font: inherit; padding: .3rem .5rem; }
+  </style>
+</head>
+<body>
+  <header><nav aria-label="Main"><a href="/list.html">Todo list</a> <a href="/delayed.html">Delayed page</a></nav></header>
+  <main>
+    <h1>Create your account</h1>
+    <p>Pick a plan and tell us who you are.</p>
+    <form action="/welcome.html" method="get" aria-label="Sign up">
+      <label for="name">Full name</label>
+      <input id="name" name="name" type="text" required placeholder="Ada Lovelace">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
+      <label for="plan">Plan</label>
+      <select id="plan" name="plan">
+        <option value="free">Free</option>
+        <option value="pro">Pro</option>
+        <option value="team">Team</option>
+      </select>
+      <label><input type="checkbox" name="news" value="yes"> Send me the newsletter</label>
+      <p><button type="submit">Create account</button> <button type="button" disabled>Cancel</button></p>
+    </form>
+  </main>
+</body>
+</html>

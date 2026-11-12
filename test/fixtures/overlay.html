@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Overlay</title>
+  <style>
+    #cover { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 10; }
+    .tall { height: 2400px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Overlay</h1>
+    <button id="under" type="button" onclick="document.getElementById('out').textContent='under clicked'">Under the cover</button>
+    <button id="hidden-btn" type="button" style="display:none">Never shown</button>
+    <p id="out" role="status">nothing yet</p>
+    <div class="tall"></div>
+    <button id="far" type="button">Far below</button>
+  </main>
+  <div id="cover" aria-hidden="true"></div>
+</body>
+</html>

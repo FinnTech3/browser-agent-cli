@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Todo list</title>
+  <style> body { font: 16px/1.4 sans-serif; margin: 2rem; } li { margin: .3rem 0; } </style>
+</head>
+<body>
+  <main>
+    <h1>Todo list</h1>
+    <form id="add" aria-label="Add item">
+      <label for="new-item">New item</label>
+      <input id="new-item" type="text">
+      <button type="submit">Add</button>
+    </form>
+    <ul id="todos" aria-label="Items">
+      <li><span>Buy milk</span> <button class="done">Done</button></li>
+      <li><span>Write tests</span> <button class="done">Done</button></li>
+      <li><span>Ship it</span> <button class="done">Done</button></li>
+    </ul>
+    <p id="count" role="status">3 items</p>
+    <button id="rebuild" type="button">Rebuild list</button>
+  </main>
+  <script>
+    const list = document.getElementById('todos');
+    const count = document.getElementById('count');
+    function refresh() { count.textContent = list.children.length + ' items'; }
+    function addItem(text) {
+      const li = document.createElement('li');
+      const span = document.createElement('span'); span.textContent = text;
+      const btn = document.createElement('button'); btn.className = 'done'; btn.textContent = 'Done';
+      li.append(span, ' ', btn);
+      list.append(li);
+      refresh();
+    }
+    list.addEventListener('click', (e) => {
+      if (e.target.classList.contains('done')) { e.target.closest('li').remove(); refresh(); }
+    });
+    document.getElementById('add').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('new-item');
+      if (input.value.trim()) { addItem(input.value.trim()); input.value = ''; }
+    });
+    // Replaces every node with a fresh copy: old refs must go stale.
+    document.getElementById('rebuild').addEventListener('click', () => {
+      const texts = Array.from(list.querySelectorAll('span')).map((s) => s.textContent);
+      list.replaceChildren();
+      texts.forEach(addItem);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules/
+coverage/
+*.log
+.DS_Store
+.env
+bac-shot-*.png
+npm-debug.log*
+dist/
+__pycache__/

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Script navigation</title></head>
+<body>
+  <main>
+    <h1>Script navigation</h1>
+    <button id="loc" type="button" onclick="location.href='{{ALT_ORIGIN}}/form.html'">Script navigate</button>
+    <button id="pop" type="button" onclick="window.open('{{ALT_ORIGIN}}/form.html')">Script popup</button>
+    <button id="timer" type="button" onclick="setTimeout(() => { location.href = '{{ALT_ORIGIN}}/form.html'; }, 150)">Navigate later</button>
+    <a href="/file.bin" download>Download file</a>
+    <p id="status" role="status">idle</p>
+  </main>
+</body>
+</html>

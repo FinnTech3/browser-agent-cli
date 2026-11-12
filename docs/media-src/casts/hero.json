@@ -1,0 +1,100 @@
+{
+  "title": "bac: real session, local demo page",
+  "cwd": "/tmp/bac-demo",
+  "env": {
+    "PATH": "${MEDIA_TMP}/prefix/bin:${PATH}",
+    "BAC_HOME": "${MEDIA_TMP}/home"
+  },
+  "width": 672,
+  "rows": 31,
+  "fontSize": 13,
+  "wrap": 80,
+  "panelWidth": 380,
+  "typeSeconds": 0.8,
+  "endHold": 2.0,
+  "highlight": [
+    {
+      "re": "^ok ",
+      "cls": "green"
+    },
+    {
+      "re": "^error\\[",
+      "cls": "red"
+    },
+    {
+      "re": "^  another tab",
+      "cls": "red"
+    },
+    {
+      "re": "Note to AI agents",
+      "cls": "red"
+    },
+    {
+      "re": "attacker\\.invalid",
+      "cls": "red"
+    }
+  ],
+  "steps": [
+    {
+      "note": "# Made-up app on localhost. Its footer has a planted instruction for agents."
+    },
+    {
+      "cmd": "bac go http://127.0.0.1:8765/signup.html",
+      "hold": 0.4
+    },
+    {
+      "cmd": "bac look",
+      "hold": 0.9
+    },
+    {
+      "cmd": "bac shot --ref e1 form.png",
+      "hold": 0.3,
+      "panel": "form.png",
+      "panelLabel": "form.png, saved by bac shot"
+    },
+    {
+      "note": "# bac fences the footer as untrusted page data. Now fill the form."
+    },
+    {
+      "cmd": "bac put e4 \"Ada Lovelace\"",
+      "hold": 0.3
+    },
+    {
+      "cmd": "bac put e5 ada@example.com",
+      "hold": 0.3
+    },
+    {
+      "cmd": "bac pick e6 Pro",
+      "hold": 0.3
+    },
+    {
+      "cmd": "bac tap e7",
+      "hold": 0.3
+    },
+    {
+      "note": "# The page changed, so the old button ref must be refused."
+    },
+    {
+      "cmd": "bac tap e7",
+      "expectExit": [
+        3
+      ],
+      "hold": 0.6
+    },
+    {
+      "cmd": "bac look --within main",
+      "hold": 0.6
+    },
+    {
+      "cmd": "bac shot --ref e9 receipt.png",
+      "hold": 0.3,
+      "panel": "receipt.png",
+      "panelLabel": "receipt.png, saved by bac shot"
+    },
+    {
+      "quiet": true,
+      "cmd": "bac stop"
+    }
+  ],
+  "burst": 2
+}

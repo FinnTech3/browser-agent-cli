@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body>
+  <main>
+    <h1>Welcome aboard</h1>
+    <p id="summary" role="status">Loading...</p>
+    <a href="/form.html">Back to the form</a>
+  </main>
+  <script>
+    const q = new URLSearchParams(location.search);
+    document.getElementById('summary').textContent =
+      'Account created for ' + (q.get('name') || 'nobody') + ' (' + (q.get('email') || 'no email') + ') on the ' +
+      (q.get('plan') || 'free') + ' plan. Newsletter: ' + (q.get('news') === 'yes' ? 'yes' : 'no') + '.';
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Delayed content</title></head>
+<body>
+  <main>
+    <h1>Delayed content</h1>
+    <p id="status" role="status">Loading...</p>
+    <div id="slot"></div>
+  </main>
+  <script>
+    setTimeout(() => {
+      document.getElementById('status').textContent = 'Loaded after delay';
+      const b = document.createElement('button');
+      b.id = 'late';
+      b.textContent = 'Late button';
+      b.addEventListener('click', () => { document.getElementById('status').textContent = 'Late button was clicked'; });
+      document.getElementById('slot').append(b);
+    }, 900);
+  </script>
+</body>
+</html>

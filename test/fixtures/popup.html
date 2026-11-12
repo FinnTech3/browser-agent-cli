@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Popup test</title></head>
+<body>
+  <main>
+    <h1>Popup test</h1>
+    <a href="/welcome.html?name=Popup" target="_blank">Open welcome in a new tab</a>
+    <button id="ask" type="button">Ask me</button>
+    <p id="answer" role="status">Unanswered</p>
+    <script>
+      document.getElementById('ask').addEventListener('click', () => {
+        document.getElementById('answer').textContent = confirm('Really?') ? 'Said yes' : 'Said no';
+      });
+    </script>
+  </main>
+</body>
+</html>

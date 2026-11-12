@@ -1,0 +1,80 @@
+{
+  "title": "bac: what it refuses to do (real output)",
+  "cwd": "/tmp/bac-demo",
+  "env": {
+    "PATH": "${MEDIA_TMP}/prefix/bin:${PATH}",
+    "BAC_HOME": "${MEDIA_TMP}/home"
+  },
+  "width": 880,
+  "rows": 27,
+  "fontSize": 14,
+  "wrap": 98,
+  "typeSeconds": 1.0,
+  "endHold": 2.5,
+  "highlight": [
+    {
+      "re": "^ok ",
+      "cls": "green"
+    },
+    {
+      "re": "^error\\[",
+      "cls": "red"
+    },
+    {
+      "re": "^\\s+(--allow-domain|user before)",
+      "cls": "red"
+    },
+    {
+      "re": "redacted",
+      "cls": "yellow"
+    }
+  ],
+  "steps": [
+    {
+      "note": "# Three URLs it will not open. Each one exits with code 6."
+    },
+    {
+      "cmd": "bac go file:///etc/passwd",
+      "expectExit": [
+        6
+      ],
+      "hold": 0.5
+    },
+    {
+      "cmd": "bac go http://169.254.169.254/latest/meta-data/",
+      "expectExit": [
+        6
+      ],
+      "hold": 0.5
+    },
+    {
+      "cmd": "bac --session strict --allow-domain 127.0.0.1 go http://localhost:8765/",
+      "expectExit": [
+        6
+      ],
+      "hold": 0.5
+    },
+    {
+      "note": "# A sign-in page that really holds a password (fake, from the test fixtures)."
+    },
+    {
+      "cmd": "curl -s http://127.0.0.1:8766/secret.html | grep -o 'type=\"password\" value=\"[^\"]*\"'",
+      "hold": 0.5
+    },
+    {
+      "cmd": "bac go http://127.0.0.1:8766/secret.html",
+      "hold": 0.4
+    },
+    {
+      "cmd": "bac look --actions",
+      "hold": 0.8
+    },
+    {
+      "note": "# The password and the access-key field come back as [redacted]."
+    },
+    {
+      "quiet": true,
+      "cmd": "bac stop; bac --session strict stop"
+    }
+  ]
+}

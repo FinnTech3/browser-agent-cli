@@ -1,0 +1,51 @@
+{
+  "name": "browser-agent-cli",
+  "version": "0.1.0",
+  "description": "Drive a real headless browser from the shell: read pages as compact snapshots with stable element refs, then act on refs. Built for AI agents.",
+  "type": "module",
+  "bin": {
+    "bac": "bin/bac.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "agensi/browser-agent-cli",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test --test-concurrency=2 test/*.test.js",
+    "test:unit": "node --test test/unit-*.test.js",
+    "lint": "eslint .",
+    "fixtures": "node test/support/serve.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0"
+  },
+  "keywords": [
+    "browser",
+    "automation",
+    "cli",
+    "ai-agents",
+    "accessibility-tree",
+    "playwright",
+    "headless"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FinnTech3/browser-agent-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FinnTech3/browser-agent-cli/issues"
+  },
+  "homepage": "https://github.com/FinnTech3/browser-agent-cli#readme",
+  "author": "FinnTech3",
+  "license": "MIT"
+}
